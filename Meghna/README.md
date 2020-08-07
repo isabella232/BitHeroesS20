@@ -491,7 +491,7 @@ Before we get started, we need to download a NuGet package necessary for this pa
 
 *Publishing Web App To Azure*
 
-1. Now it's time for us to publish everything to Azure. To do this, right click on `SchedulingBotWebApp`, and select `Publish... ` . When it asks, `Where are you publishing today?`, choose `Azure`. And then, when it asks, `Which Azure service would you like to use to host your application?`, select `Azure App Service (Windows)`. 
+1. Now it's time for us to publish everything to Azure. To do this, right-click on `SchedulingBotWebApp`, and select `Publish... `. When it asks, `Where are you publishing today?`, choose `Azure`. And then, when it asks, `Which Azure service would you like to use to host your application?`, select `Azure App Service (Windows)`. 
 
 2. At the bottom, you should see `Create a new Azure App Service... `. Select that. Fill out the following groups as shown below, and press `Create` when done: 
 
