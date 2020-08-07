@@ -361,7 +361,7 @@ Before we get started, we need to download a NuGet package necessary for this pa
 
 *Creating a New Class in Database*
 
-1. Let's create a new folder. In your `Solution Explorer`, right click on `SchedulingBotWebApp`. Then, hover over `Add` and select `New Folder`.  Name the folder `Database`. Here's a visual to help you do this: 
+1. Let's create a new folder. In your `Solution Explorer`, right-click on `SchedulingBotWebApp`. Then, hover over `Add` and select `New Folder`.  Name the folder `Database`. Here's a visual to help you do this: 
 
    ![](Screenshots/Screenshot%20(21).png)
 
