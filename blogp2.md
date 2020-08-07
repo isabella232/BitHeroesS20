@@ -1,4 +1,4 @@
-## Part 2: Creating a React App with Spotify Oauth
+## Part 2: Creating a React App with Spotify OAuth
 
 In my previous post, I outlined how to detect emotion in photos using the Microsoft Face API and Azure Functions. In the second part of this series, we'll be focusing on creating the actual React frontend and getting the user logged in to Spotify before getting any song recommendations.
 
@@ -10,7 +10,7 @@ As a refresher, here's an overall flowchart.
 
 
 
-### Setting up Oauth
+### Setting up OAuth
 
 Disclaimer: this part of my tutorial is completely ripped off from [this](https://medium.com/@jonnykalambay/now-playing-using-spotifys-awesome-api-with-react-7db8173a7b13) higher-quality and very excellent blog post/video by Jonny Kalambay. If you're looking for a better explanation, I suggest you take a look.
 
@@ -22,7 +22,7 @@ Disclaimer: this part of my tutorial is completely ripped off from [this](https:
 
 
 
-Let's talk about Oauth: it's an open-standard authorization protocol or framework that describes how unrelated servers and services can safely allow authenticated access to their assets without actually sharing the initial, related, single logon credential. If you've ever gone to a website that's asked you to log in with Google or Facebook, that's using Oauth. 
+Let's talk about OAuth: it's an open-standard authorization protocol or framework that describes how unrelated servers and services can safely allow authenticated access to their assets without actually sharing the initial, related, single login credential. If you've ever gone to a website that's asked you to log in with Google or Facebook, that's using OAuth. 
 
 
 
@@ -30,7 +30,7 @@ There are different types of authorization flows, but today we'll be using the [
 
 ![spotifyoauthflow](images/spotifyoauthflow.png)
 
-Follow the arrows and notice the data getting passed through in each step: the app has a client id and secret, and uses these to request a token from the Spotify Accounts Service. Then the app redirects the user to a specified webpage with an access token in the URL, which our app needs to call the Spotify Web API. Now that we've got the basic concept down, let's get started!
+Follow the arrows and notice the data getting passed through in each step: the app has a client id and secret, and it uses these to request a token from the Spotify Accounts Service. Then the app redirects the user to a specified webpage with an access token in the URL, which our app needs to call the Spotify Web API. Now that we've got the basic concept down, let's get started!
 
 
 
@@ -72,7 +72,7 @@ var client_secret = ‘CLIENT_SECRET’; // Your secret
 var redirect_uri = ‘REDIRECT_URI’; // Your redirect uri
 ```
 
-You're going to replace `client_id`, `client_secret`,  and `redirect_uri`  with your own id and secret and `http://localhost:8888/callback`. **This isn't a permanent solution!** To protect your id and secret, you should move them into an untracked .env file later. Refer to [this](https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786) tutorial. **Tip! Make sure to commit your .gitignore file with .env inside before actually creating a .env file, this ensures no early versions of the file with your api key make it onto github.**
+You're going to replace `client_id`, `client_secret`,  and `redirect_uri`  with your id and secret and `http://localhost:8888/callback`. **This isn't a permanent solution!** To protect your id and secret, you should move them into an untracked .env file later. Refer to [this](https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786) tutorial. **Tip! Make sure to commit your .gitignore file with .env inside before actually creating a .env file, this ensures no early versions of the file with your api key make it onto github.**
 
 Before we test, we need to specify the **scope**. In your app.js file, you're going to find a variable `scope`. Right now, it's probably set to some string of words like `var scope = ‘user-read-private user-read-email’;`. So what is scope? Basically, scope defines the set of actions that your app is requesting to do with the Spotify API. Right now, we want to use `'user-read-private'` to get user info like their name, and `'user-read-email'` to get the user's email. Some Spotify API calls have required scopes. Others, like accessing a public playlist have no required scopes. For our purposes, we're going to have to use a couple more than the one's currently specified. In your code, set scope like so:
 `var scope = user-read-private user-read-email user-top-read playlist-modify-private playlist-modify-public`
@@ -90,7 +90,7 @@ Now go to `http://localhost:8888`. You should see this page:
 
 ![local8888example](images/local8888example.png)
 
-Pressing login should take you to an authorization page. Once you login, you'll be redirected to a page like this: 
+Pressing login should take you to an authorization page. Once you log in, you'll be redirected to a page like this: 
 
 ![loggedinas](images/loggedinas.png)
 
@@ -98,8 +98,7 @@ Check out the url of the final page!
 
 ![loggedinurl](images/loggedinurl.png)
 
-Notice that it's the original url, just with an access token attached. If you also take a closer look at the code, notice that clicking login will take you to `localhost:8888/callback`, where a Spotify API call is made to get a token. You're then redirected to `localhost:8888/#access_token=...` , where we can actually access the token from the url. 
-
+Notice that it's the original url, just with an access token attached. If you also take a closer look at the code, notice that clicking login will take you to `localhost:8888/callback`, where a Spotify API call is made to get a token. You're then redirected to `localhost:8888/#access_token=...`, where we can access the token from the url. 
 
 
 

@@ -10,19 +10,19 @@ In Part 1, we’ll be focusing on the centerpiece: deciphering the user’s face
 
 We'll be using Azure Functions in this project. If you're unfamiliar, Azure Functions allows you to write and deploy serverless code without having to manage infrastructure. It incorporates a variety of triggers that allows your function to run on-demand in response to a variety of events. Here are a couple common triggers:
 
-- HTTP Trigger(today's star <3)
-- Timers Trigger(runs on a timed bases: daily, weekly, etc)
-- Blob Trigger(when a file is added to Azure Blob storage)
-- Cosmos DB Trigger(when data is added to Azure Cosmos DB)
-- Storage queue Trigger(when a message is submitted to the storage queue)
+- HTTP Trigger (today's star <3)
+- Timers Trigger (runs on a timed basis: daily, weekly, etc)
+- Blob Trigger (when a file is added to Azure Blob storage)
+- Cosmos DB Trigger (when data is added to Azure Cosmos DB)
+- Storage queue Trigger (when a message is submitted to the storage queue)
 
-To familiarze yourself with the different types, I'd recommend trying out [this](https://docs.microsoft.com/en-us/learn/modules/execute-azure-function-with-triggers/) Microsoft module, which runs you through some basic examples.
+To familiarize yourself with the different types, I'd recommend trying out [this](https://docs.microsoft.com/en-us/learn/modules/execute-azure-function-with-triggers/) Microsoft module, which runs you through some basic examples.
 
 
 
 ### Creating a Face API Subscription
 
-We'll be using the Microsoft API to extract data on a person's emotions from a picture. The Face API is a cognitive service that provides algorithmns for identifying/detecting faces and analyzing attributes of faces in images. For more information, check out the API documentation and tutorials [here](https://docs.microsoft.com/en-us/azure/cognitive-services/face/). First step is to get an actual Face API endpoint. This can be done easily in the Azure Portal: Go to **Create a Resource**, press the **AI + Machine Learning** tab on the left, and select **Face**.
+We'll be using the Microsoft API to extract data on a person's emotions from a picture. The Face API is a cognitive service that provides algorithms for identifying/detecting faces and analyzing attributes of faces in images. For more information, check out the API documentation and tutorials [here](https://docs.microsoft.com/en-us/azure/cognitive-services/face/). The first step is to get an actual Face API endpoint. This can be done easily in the Azure Portal: Go to **Create a Resource**, press the **AI + Machine Learning** tab on the left, and select **Face**.
 
 ![clickAI+Face](images/clickAI+Face.png)
 
@@ -33,7 +33,7 @@ Deploy your resource, and save your endpoint!
 
 ### Creating an Azure Function
 
-It's time to create our Azure Function- I'm just using the Azure Portal, but those who prefer Visual Studio Code can refer [here.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code?pivots=programming-language-javascript) In the portal, select **Create a Resource **and then press **Function App**. Select a Resource Group(mine uses the same one as the Face API resource) and give the app a unique name. For runtime stack, select Node.js and Version 12. For region, choose one near you.
+It's time to create our Azure Function- I'm just using the Azure Portal, but those who prefer Visual Studio Code can refer [here.](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-function-vs-code?pivots=programming-language-javascript) In the portal, select **Create a Resource** and then press **Function App**. Select a Resource Group(mine uses the same one as the Face API resource) and give the app a unique name. For runtime stack, select Node.js and Version 12. For region, choose one near you.
 
 ![createFunctionApp](images/createFunctionApp.png)
 
@@ -67,7 +67,7 @@ Wait for the function to deploy, then click into the **Code + Test** tab and go 
 
 Replace the code with this: 
 
-This code is triggered by an HTTP request and parses HTML multipart data(our image!) with the help of the extremely helpful [parse-multipart](https://www.npmjs.com/package/parse-multipart) library. We're then calling the Face API in the function **analyzeImage** using the subscription key and endpoint from earlier, passing in our parsed image. This uses the [request-promise](https://www.npmjs.com/package/request-promise) library, which is basically request but with Promise support, which we require in our async **analyzeImage** function. Using `JSON.parse()`, we return the body in a JSON format. 
+This code is triggered by an HTTP request and parses HTML multipart data(our image!) with the help of the extremely helpful [parse-multipart](https://www.npmjs.com/package/parse-multipart) library. We're then calling the Face API in the function **analyzeImage** using the subscription key and endpoint from earlier, passing in our parsed image. This uses the [request-promise](https://www.npmjs.com/package/request-promise) library, which is basically a request but with Promise support, which we require in our async **analyzeImage** function. Using `JSON.parse()`, we return the body in a JSON format. 
 
 ```js
 var multipart = require("parse-multipart");
@@ -238,7 +238,7 @@ Here's the sample HTML webage with a HTML form(ft absolutely nonexistent styling
 ```
 
 and the corresponding js file(called app.js).
-Inside the app.js file, the `handle(event)`function is called upon form submission, and makes an http post call to your Azure Function with the submitted image in the body. Make sure you replace the url with your own Function url, and the key with your Function key.
+Inside the app.js file, the `handle(event)` function is called upon form submission, and it makes an http post call to your Azure Function with the submitted image in the body. Make sure you replace the url with your own Function url, and the key with your Function key.
 
 
 ```js
