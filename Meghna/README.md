@@ -153,7 +153,7 @@ Let's get started.
 
    Now, this will allow the Bot to accept characters that are only equal to ten characters. For this demo, we are only validating the length of the input, and not the content. 
 
-5. When you scroll down the side bar on the right, there will be a title called `Invalid prompt`. In this text box, we must type a message for the Bot to send when the user input does not meet any validation expression. Enter the following:
+5. When you scroll down the sidebar on the right, there will be a title called `Invalid prompt`. In this text box, we must type a message for the Bot to send when the user input does not meet any validation expression. Enter the following:
 
    ```
    - I don't recognize ${this.value} as a valid phone number.
