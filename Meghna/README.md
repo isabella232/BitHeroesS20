@@ -74,7 +74,7 @@ Let's get started.
 
    ![](Screenshots/Screenshot%20(5).png)
 
-4. When redirected, if you look to the left, under `Filter Dialog`, there should be a section that says `Greeting`. Select that.
+4. When redirected, if you look to the left, under `Filter Dialog`, select the section that says `Greeting`. 
 
 
 
