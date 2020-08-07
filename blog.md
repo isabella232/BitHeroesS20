@@ -2,7 +2,7 @@
 
 Deciding whether a photo is good enough to post, use as a profile picture, or display in any other way is arguably one of life's greatest challenges. As such, when deciding this, people will often seek advice from their friends. But even then, it's possible you might still have doubts about their feedback. Even if they tell you that you do in fact look your age and you do look absolutely ecstatic in that photo, who knows if they're telling you the truth? Instead of having to ask around until you're confident that they're telling the truth or at least, confident that you have many kind friends who will hype you up no matter what, you can use this handy-dandy tool to give you objective analysis on your photo. 
 
-In this tutorial, you'll learn how to create a Google Extension that will allow you to upload photos to receive back a general summary of the face in your photo, including the person-in-photo's estimated age, gender, and smile intensity.
+In this tutorial, you'll learn how to create a Google Extension that will allow you to upload photos to receive back a general summary of the face in your photo, including the person-in-photo's estimated age, gender, and emotions.
 
 **Prerequisites:**
 
@@ -42,7 +42,7 @@ The first part of the project is creating the web app that allows users to uploa
 
    The "provisioningState" should have the status of "Succeeded". 
 
-4. Create a storage account by copying and entering this code. Make sure this name is unique, otherwise the name might be taken.
+4. Now, create a storage account by copying and entering this code. Make sure this name is unique, otherwise the name might be taken.
 
    `az storage account create --name MYSTORAGEACCOUNT --location southeastasia \
      --resource-group MYRESOURCEGROUP --sku Standard_LRS --kind StorageV2 --access-tier hot`
@@ -138,7 +138,7 @@ Now that you've created a website where you can upload photos and they'll be pla
 
    The `List of Files Name` will be considered Dynamic Content, and will show up as a dropdown menu available when entering in the URL.
 
-9. Before we move on to the last step in making the Logic App, we must first make a third storage container in the original storage account. Go back to the storage account, click containers, and now create a third storage container, this time with the name "data" and the access level as container. 
+9. Awesome! Before we move on to the last step in making the Logic App, we must first make a third storage container in the original storage account. Go back to the storage account, click containers, and now create a third storage container, this time with the name "data" and the access level as container. 
 
    ![](images/containers.PNG)
 
@@ -156,11 +156,11 @@ Now that you've created a website where you can upload photos and they'll be pla
 
     ` "body": "Image Info for @{triggerBody()?['Name']}:\n\nAge: @{items('For_each')?['faceAttributes']?['age']}; \nGender: @{items('For_each')?['faceAttributes']?['gender']}; \n\nEmotion Scores: \nHappiness: @{items('For_each')?['faceAttributes']?['emotion']?['happiness']}\nSadness: @{items('For_each')?['faceAttributes']?['emotion']?['sadness']}\nAnger: @{items('For_each')?['faceAttributes']?['emotion']?['anger']}\nContempt: @{items('For_each')?['faceAttributes']?['emotion']?['contempt']}\nFear: @{items('For_each')?['faceAttributes']?['emotion']?['fear']}\nDigust: @{items('For_each')?['faceAttributes']?['emotion']?['disgust']}\nSurprise: @{items('For_each')?['faceAttributes']?['emotion']?['surprise']}\nNeutral: @{items('For_each')?['faceAttributes']?['emotion']?['neutral']};\n\nOther Info:\nMoustache Intensity: @{items('For_each')?['faceAttributes']?['facialHair']?['moustache']}\nBeard Intensity: @{items('For_each')?['faceAttributes']?['facialHair']?['beard']}\nGlasses: @{items('For_each')?['faceAttributes']?['glasses']};",`
 
-    Then save! Finally,go back to Logic App designer. When you click under the blob action, your code should look like this. 
+    Then save! Finally, go back to Logic App designer. When you click under the blob action, your code should look like this. 
 
     ![](images/newforeach.png)
 
-Woohoo! At this point, if you followed everything correctly, you will now have a working Logic App that lets the Face API analyze the image uploaded and respond by giving back data about the image. To test it, press `Run` and then upload an image to the website you created. You should receive a check for each of the steps. Finally, go to the data storage container and make sure a blob was created with the right information. If it's there, great job!! We can move on to the last and final part of this project.
+Woohoo! At this point, if you followed everything correctly, you will now have a working Logic App that lets the Face API analyze the image uploaded and respond by giving back data about the image, including the person-in-photo's estimated age, gender, emotion scores, and more! To test it, press `Run` and then upload an image to the website you created. You should receive a check for each of the steps. Finally, go to the data storage container and make sure a blob was created with the right information. If it's there, great job!! We can move on to the last and final part of this project.
 
 
 
@@ -204,6 +204,6 @@ Finally! I promise you though, this will be the shortest part in this project tu
 
 
 
-And that's it folks! In this tutorial, you learned how to make a Google Chrome extension that allows easy access to an Azure website to upload photos to receive basic, objective analysis on them. Great job! I'm proud of you! 
+And that's it folks! In this tutorial, you learned how to make a Google Chrome extension that allows easy access to an Azure website to upload photos to receive basic, objective analysis on them. Great job! I'm proud of you! If you took a picture of me right now, learning about your completion of this tutorial, my happiness score would definitely be a whopping 1. 
 
-Happy coding! 
+Thanks for reading and happy coding! 
