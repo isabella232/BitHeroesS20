@@ -122,7 +122,7 @@ Let's get started.
 
    *Important note: Whenever you enter a validation rule, make sure to hit enter at the end so that it registers. Otherwise, it will not save.
 
-5. When you scroll down the side bar on the right, there will be a title called `Invalid prompt`. In this text box, we must type a message for the Bot to send when the user input does not meet any validation expression. Enter the following:
+5. When you scroll down the sidebar on the right, there will be a title called `Invalid prompt`. In this text box, we must type a message for the Bot to send when the user input does not meet any validation expression. Enter the following:
 
    ```
    - Please enter a value between 3 and 25 characters.
