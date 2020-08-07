@@ -600,7 +600,7 @@ Before we get started, we need to download a NuGet package necessary for this pa
 
 2. When redirected, select `Browse` and look up `Twilio`. Then click on it and follow the procedures for installation. 
 
-*Set Up*
+*Set-Up*
 
 1. Enter the following code immediately above the line that says `log.LogInformation`. Remember to replace certain parts of your code, as listed, with your Get URL, Account SID, Auth Token, Twilio phone number, and your Update URL. For your Get URL, check Azure for your web app URL, and add `/GetSchedules` to the end of it. For your Update URL, use your web app URL, and add `/CompleteSchedule` to the end of it.
 
