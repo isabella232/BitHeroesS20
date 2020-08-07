@@ -24,13 +24,13 @@ npm start
 
 Navigate to `http://localhost:3000` to see if your app is up and running. It should look something like this:
 
-[![startingreactpage](https://github.com/natalieh235/songrecproject/raw/blog/images/startingreactpage.png)](https://github.com/natalieh235/songrecproject/blob/blog/images/startingreactpage.png)
+![startingreactpage](images/startingreactpage.png)
 
 #### Step 2- Create the Homepage
 
 So this React app will involve some very simple routing- this means that different urls will render different pages. For example, going to `localhost:3000/home` will take you to a homepage, while going to `localhost:3000/song` will perhaps show a list of songs. We're going to focus on creating a basic homepage, which will look something like this:
 
-[![reacthomepage](https://github.com/natalieh235/songrecproject/raw/blog/images/reacthomepage.png)](https://github.com/natalieh235/songrecproject/blob/blog/images/reacthomepage.png)
+![reacthomepage](images/reacthomepage.png)
 
 Get started by making a new file called `Home.js`. I stuck this inside a folder `components` since we're going to end up making a lot more files later on.
 
@@ -170,7 +170,7 @@ This specifies the url that the access_token should be attached to. For us, it's
 
 Make sure both your server and app are running(use `node app.js` for your server and `npm start` for your React app) and test it out!
 
-[![loginexample](https://github.com/natalieh235/songrecproject/raw/blog/images/loginexample.gif)](https://github.com/natalieh235/songrecproject/blob/blog/images/loginexample.gif)
+![loginexample](images/loginexample.gif)
 
 Yay it works! (hopefully)
 
@@ -314,9 +314,7 @@ The loading page:
 Now that we've integrated our Azure Function into the React App, the rest of the process is pretty simple. I won't be going super in-depth into the code, just a few key points. The actual function that gets song recommendations is the `getRecommendations()` function. 
 
 
-
 A basic overview: the Spotify web API has a feature that allows you to call an API endpoint, enter in seed artists/seed tracks as params, and get a list of recommended tracks in return. In this function, I'm calling a different function called `getTop`, which uses the Spotify API to get a user's top tracks and artists.
-
 
 
 Then, I'm setting my min and max valence. **Valence**: a numerical measure from 0 to 1 of a song's sadness/happiness. The lower the number, the sadder the track. You may see that I already have a variable called valence. This is how I calculated it:
