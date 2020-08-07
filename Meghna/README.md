@@ -58,7 +58,7 @@ When you are all signed up for Azure, the next step is to create a few folders o
 
 We must now start composing the scheduler bot using the Bot Framework Composer. 
 
-*Side note: The Bot that we are creating will not have any advanced features, such as intents or Triggers, as it will only extend the `WelcomeTheUser` activity. Regardless, it gets the main job done, and is a cool program to create! 
+*Side note: The Bot that we are creating will not have any advanced features, such as intents or Triggers, as it will only extend the `WelcomeTheUser` activity. Regardless, it gets the job done, is easy to extend, and is a cool program to create! 
 
 Let's get started.
 
