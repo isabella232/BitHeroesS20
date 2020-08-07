@@ -4,7 +4,7 @@
 
 
 
-Sometimes (well most of the time), humans tend to forget things. And while there may be several methods of scheduling reminders, having a chatbot is one of the most simple applications you can have to help with this. A scheduling chatbot can ask you several questions regarding the details of your event and puts it all together to send you a reminder one hour prior. In this tutorial, you will learn how to create a chatbot using Azure services that will make your life easier and up-to-date. There are three parts to this: developing the actual Bot, creating a web app, and creating an Azure function. Let's get started! 
+Sometimes (well, most of the time), humans tend to forget things. And while there may be several methods of scheduling reminders, having a chatbot is one of the simplest applications you can have to help out. A scheduling chatbot can ask you several questions regarding the details of your event and put it all together to send you a reminder one hour beforehand. In this tutorial, you will learn how to create a chatbot using Azure services that will make your life easier and up-to-date. There are three parts to this: developing the Bot's code, creating a web app, and creating an Azure function. Let's get started! 
 
 
 
