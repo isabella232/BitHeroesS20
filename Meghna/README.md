@@ -156,7 +156,7 @@ Let's get started.
 5. When you scroll down the side bar on the right, there will be a title called `Invalid prompt`. In this text box, we must type a message for the Bot to send when the user input does not meet any validation expression. Enter the following:
 
    ```
-   - I don't recognized ${this.value} as a valid phone number.
+   - I don't recognize ${this.value} as a valid phone number.
    ```
 
    The `${this.value}` will allow the Bot to respond to the user using the response they entered in the first place.
