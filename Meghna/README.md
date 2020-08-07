@@ -646,7 +646,7 @@ Before we get started, we need to download a NuGet package necessary for this pa
 
 *Publishing Function To Azure*
 
-1. Now it's time for us to publish everything to Azure. To do this, right click on `SchedulingBotFunction`, and select `Publish... ` . When it asks, `Where are you publishing today?`, choose `Azure`. And then, when it asks, `Which Azure service would you like to use to host your application?`, select `Azure Function App (Windows)`. 
+1. Now it's time for us to publish everything to Azure. To do this, right-click on `SchedulingBotFunction`, and select `Publish... `. When it asks, `Where are you publishing today?`, choose `Azure`. And then, when it asks, `Which Azure service would you like to use to host your application?`, select `Azure Function App (Windows)`. 
 
 2. At the bottom, you should see `Create a new Azure Function... `. Select that. Fill out the following groups as shown below, and press `Create` when done: 
 
