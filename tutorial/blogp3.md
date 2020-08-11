@@ -1,6 +1,6 @@
 #### **Welcome to Part 3. In this part, we will be finishing up our logic app and uploading our files.**
 
-Link your “blob” blocks to your storage account when prompted. The block names in the Part 1 image are explanatory about what each block does. We will be going through the most important blocks and noting any changes you'll need to make.The for-each loop iterates through each “value” in the form submission. You will find “value” and many other variables in the “Dynamic Content” Section. 
+Link your “blob” blocks to your storage account when prompted. The block names in the Part 1 image are explanatory about what each block does. We will be going through the most important blocks and noting any changes you'll need to make. The for-each loop iterates through each “value” in the form submission. You will find “value” and many other variables in the “Dynamic Content” Section. 
 Below is a detailed explanation of the major blocks:
 
 1. 
@@ -148,7 +148,9 @@ int choice3 (int size){
 
 The code will create folders in your local directory. Upload these folders to the Azure Blob Storage container you are using to receive the form data. 
 
-See the results, enjoy, and customize to your needs!
+See the results, enjoy, and customize to your needs! Below are sample outputs of how your blob storage and email should look. 
+
+
 
 Possible Add-ons:
 1.	Try to send an HTML graph or chart with the data in the Outlook Email. 
