@@ -4,9 +4,9 @@ Here’s a brief visual overview of the components of our project:
 
 ![Flowchart](https://github.com/11301858/callcenterapp/blob/master/tutorial/p2images/1.png)
 
-Part 1 of this tutorial focuses on the HTML Webform and Azure Storage Blob, while Part 2 discusses Azure Logic Apps and the Outlook API. The tutorial closes by suggesting possible add-ons. 
+Part 2 of this tutorial focuses on the HTML Webform and Azure Storage Blob, while Part 3 discusses Azure Logic Apps and the Outlook API. The tutorial closes by suggesting possible add-ons. 
 
-You are looking at Part 1 of this tutorial. 
+You are looking at Part 2 of this tutorial. 
 
 The first thing we want to do is to create the working directory where our code will go. Open your text editor or folder system and create a new folder. Name this folder “CallCenterProject Directory”. 
  
