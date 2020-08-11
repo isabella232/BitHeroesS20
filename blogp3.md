@@ -422,6 +422,281 @@ In the rest of the code, I'm pretty much just displaying these 10 songs. Here's 
 
 ![finishedpage](/images/finishedpage.png)
 
+### Adding a Webcam!
+
+In an unplanned detour from my original project, I discovered this great npm library called [react-webcam](https://www.npmjs.com/package/react-webcam) that allows you easily add a webcam component in React. Naturally, I decided to add this in(though it's completely optional). This webcam will replace the image upload page we previously made. The full code can be found in the [webcam](https://github.com/natalieh235/songrecproject/tree/webcam) branch of the original repo.
+
+
+
+The code is pretty simple. First, I created a new React Component called `Cam.js`  for our webcam. [Here](https://github.com/natalieh235/songrecproject/blob/webcam/client/src/components/FormFolder/Webcam.js) is the complete `Cam.js` code. In this blog, I'll be breaking down in the code into individual pieces:
+
+
+
+First, all of our import statments, including the one for `react-webcam`.
+
+```react
+//Cam.js
+
+import React from "react";
+import Webcam from "react-webcam";
+import notfound from './imagenotfound.png'
+```
+
+
+
+Then, we declare our class component, called `Cam`, and the constructor:
+
+Notice that this class will receive a `props` parameter.
+
+```react
+//Cam.js
+
+class Cam extends React.Component {
+    constructor(props){
+        super(props);
+    }
+
+  ...
+```
+
+
+
+The last part of this component is the render method:
+
+The entire render code is wrapped in the `image-submission`  div, and then split into two major parts: `webcam-div` and `screenshots`.  
+
+
+
+This is the `webcam-div` code, which renders the actual webcam with `<Webcam />`.  Notice that we have added a reference to the webcam with the variable `ref`.  We're going to need this later when we capture and screenshot. Also make sure you specify that `screenshotFormat='image/jpeg'`. **Without this, your image will be incorrectly encoded.**
+
+```react
+//Cam.js
+
+render() {
+      return (
+        <div id='image-submission'>
+          
+          <div id="webcam-div">
+            <h1>Take a picture:</h1>
+            <Webcam
+              audio={false}
+              ref={node => this.webcam = node}
+              screenshotFormat='image/jpeg'
+              mirrored={true}
+              style={{width: '100%'}}
+            />
+            <button 
+              className="green-btn" 
+              onClick={(event) => this.props.handleCapture(this.webcam.getScreenshot())}
+              style={{width: "50%" }}
+              >Capture
+            </button>
+          </div>
+      );
+    }
+```
+
+We also have a `Capture`  button that is responsible for taking a screenshot whenever pressed. Notice that once the button is clicked, it's calling the `handleCapture`  that's been passed down from the `props` parameter. Inside the `handleCapture`  parameter, we are getting the base64 encoded string of the image by calling `this.webcam.getScreenshot()`. 
+
+
+
+The `handleCapture` method is in the parent of the `Webcam`  component and looks like this:
+
+Essentially, we're updating the state variable `img` with the base64 string, and also indicating through updating `showFormButton` that a submit button should be rendered.
+
+```react
+//UploadFace.js
+handleCapture = (imgSrc) => {
+    this.setState({ 
+      img: imgSrc ,
+      showFormButton: true
+    });
+  }
+```
+
+
+
+Now, onto the`screenshots` div, which makes up the second half of the `render`  method in `Cam.js`. This if statement: 
+
+```react
+{this.props.img ? <img src={this.props.img} /> : <img src={notfound} style={{width: '100%'}}/>}
+```
+
+checks if there is an existing screenshot to display, and if not, displays a stock `image not found` photo.
+
+```react
+//Cam.js
+render(){
+  ...
+  
+  <div id='screenshots'>
+      <h1>Image</h1>
+    
+      {this.props.img ? <img src={this.props.img} /> : <img src={notfound} style={{width: '100%'}}/>}
+    
+      <button 
+        className="green-btn" 
+        onClick={(event) => this.props.submit(event)}
+        style={{display: this.props.showButton ? 'inline-block' : 'none', width: "50%"}}
+        >Submit
+      </button>
+    
+    </div>
+  </div>
+}
+
+```
+
+There's also a **Submit** button that calls the method`submit(event)`, which is also located in the parent component.
+
+The `submit` method sends the base64 encoded image string to our Azure function. Then, it checks if the response array has been filled(indicating a face has been recognized and analyzed). If the submission is invalid, the user has to retake the picture.
+
+```react
+async submit(event){  
+  
+  	//show the loading page
+    this.setState({loading: true})
+    event.stopPropagation();
+    event.preventDefault();
+  
+    var payload = this.state.img;
+
+  //calls the Azure Function
+    const resp = await fetch("https://songrecapp.azurewebsites.net/api/SongRecTrigger", {
+      method: 'POST',
+      body: payload
+    })
+
+    var data = await resp.json();
+    
+  	//check if the data received is valid(a face has been recognized)
+    if (data.result.length != 0){
+      var emotions = data.result[0].faceAttributes.emotion;  
+      console.log(emotions)
+      this.setState(() => {
+        return{
+          emotions: emotions,
+          submitted: true
+        }
+      }) 
+      
+    //if the resp.json() is empty, a face has not been recognized and they will stay on the page
+    } else{
+      this.setState(() => {
+        return{
+          loading: false
+        }
+      }) 
+    }
+  }
+```
+
+
+
+Recall that we previously sent our image in multipart-form data. Now, it's a base64 encoded string, which means that our Azure function will change slightly.
+
+
+
+The only different part is that we no longer have to parse the form data. Instead, we are decoding the base64 image string using the `Buffer.from()`  method, and then passing the new byte array into our `analyzeImage` function, which is exactly the same as before.
+
+```javascript
+var request = require('request-promise');
+var util = require('util');
+     
+module.exports = async function (context, req) {
+    //parse the base64 image string
+    var imgString = req.body.toString().split(',')[1] 
+
+    //convert base64 to byte array
+    var myBlob = Buffer.from(imgString, 'base64');
+    var result = await analyzeImage(myBlob);
+  
+  	//stick data into response body
+    context.res = {
+        body: {
+            result
+        }
+    }; 
+    console.log(result); 
+    context.done();  
+};
+
+async function analyzeImage(byteArray){
+    
+    const subscriptionKey = '<KEY>';
+    const uriBase = 'YOUR ENDPOINT' + '/face/v1.0/detect';
+
+    const params = {
+        'returnFaceId': 'true',
+        'returnFaceAttributes': 'emotion'
+    };
+
+    const options = {
+        uri: uriBase,
+        qs: params,
+        body: byteArray,
+        headers: {
+            'Content-Type': "application/octet-stream",
+            "Ocp-Apim-Subscription-Key": subscriptionKey
+        }
+    }
+    let jsonResponse;
+    
+    await request.post(options, (error, response, body) => {
+        if (error){
+            console.log('Error: ' + error);
+            return;
+        }
+
+        jsonResponse = JSON.parse(body);
+    });
+    return jsonResponse;
+}
+```
+
+
+
+Great! The last step is to render our actual `Cam` component:
+
+Notice that I'm passing in all the necessary methods/state variables.
+
+```react
+//UploadFace.js 
+
+render(){
+    return (
+      <div>
+        <UserProfile userInfo={this.state.userInfo}/>
+        <Cam 
+          submit={this.submitForm} 
+          handleCapture={this.handleCapture}
+          img={this.state.img}
+          showButton={this.state.showFormButton}
+          />
+      </div>
+    )
+  }
+```
+
+
+
+Here's what the finished page should look like:
+
+
+
+![webcam](/images/webcam)
+
+
+
+or something like this..
+
+
+![webcam2](/images/webcam2.png)
+
+
+
+Have fun with it!
+
 
 
 
