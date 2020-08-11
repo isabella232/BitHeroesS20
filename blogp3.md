@@ -684,7 +684,7 @@ Here's what the finished page should look like:
 
 
 
-![webcam](/images/webcam)
+![webcam](/images/webcam.png)
 
 
 
