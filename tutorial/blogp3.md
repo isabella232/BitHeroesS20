@@ -148,9 +148,13 @@ int choice3 (int size){
 
 The code will create folders in your local directory. Upload these folders to the Azure Blob Storage container you are using to receive the form data. 
 
-See the results, enjoy, and customize to your needs! Below are sample outputs of how your blob storage and email should look. 
+See the results, enjoy, and customize to your needs! Below are sample outputs of how your blob storage and email should look.
 
+##### JSON File in AZURE Blob Storage
+![](https://github.com/bitprj/BitHeroesS20/blob/Shreyan/tutorial/p3images/blob_storage.PNG)
 
+##### Email Output
+![](https://github.com/bitprj/BitHeroesS20/blob/Shreyan/tutorial/p3images/email_output_updated.jpg)
 
 Possible Add-ons:
 1.	Try to send an HTML graph or chart with the data in the Outlook Email. 
