@@ -32,7 +32,7 @@ So this React app will involve some very simple routing- this means that differe
 
 ![reacthomepage](images/reacthomepage.png)
 
-Get started by making a new file called `Home.js`. I stuck this inside a folder `components` since we're going to end up making a lot more files later on.
+Get started by making a new file called `Home.js`.  I stuck this inside a folder called `components` since we're going to end up making a lot more files later on.
 
 Add in this code:
 
@@ -154,7 +154,7 @@ These lines:
 <Route path="/" exact component={Home}/>
 ```
 
-are doing the actual routing. The path indicates the url that the user needs to go to for the page to render, and the component is the component that should be rendered at that specific url. Notice that there's a `<Nav />` component that isn't surrounded by route- this means that it will always be rendered regardless of the given url. This is the navbar at the top of the page- you can customize this however you want, or eliminate it.
+are doing the actual routing. The path indicates the url that the user needs to go to for the page to render, and the `component` parameter is the React component that should be rendered at that specific url. Notice that there's a `<Nav />` component that isn't surrounded by route- this means that it will always appear regardless of the given url. This is the navbar at the top of the page- you can customize this however you want, or eliminate it.
 
 We're almost ready to test- the last step is actually to change the redirect url of your server. Find this line in your code(it should be around line 107):
 
@@ -429,7 +429,6 @@ In an unplanned detour from my original project, I discovered this great npm lib
 
 
 The code is pretty simple. First, I created a new React Component called `Cam.js`  for our webcam. [Here](https://github.com/natalieh235/songrecproject/blob/webcam/client/src/components/FormFolder/Webcam.js) is the complete `Cam.js` code. In this blog, I'll be breaking down in the code into individual pieces:
-
 
 
 First, all of our import statments, including the one for `react-webcam`.
