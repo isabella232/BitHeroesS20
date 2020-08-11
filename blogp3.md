@@ -36,7 +36,7 @@ Get started by making a new file called `Home.js`. I stuck this inside a folder 
 
 Add in this code:
 
-```
+```js
 import React from 'react';
 
 function Home() {
@@ -67,7 +67,7 @@ This creates a class component with state variables `token` and `userInfo`. Once
 
 Once we get the token, we set our state variable `token` and make an API call using the token to get the user's display name and id. To test that this works, let's render a "Logged in as {display_name}" statement. This will change later.
 
-```
+```js
 import React from 'react';
 
 class UploadFace extends React.Component {
@@ -122,7 +122,7 @@ Copy-paste this code:
 
 Notice that I'm using `BrowserRouter`(saved as Router) and `Route` from the react-router-dom library. I'm surrounding all the components in my return statement with `<Router><Router/>`, which will allow me to specify Routes.
 
-```
+```js
 import React from 'react';
 import './App.css';
 import UploadFace from './components/UploadFace'
@@ -149,7 +149,7 @@ export default App;
 
 These lines:
 
-```
+```js
 <Route path="/face" component={UploadFace}/>
 <Route path="/" exact component={Home}/>
 ```
@@ -158,7 +158,7 @@ are doing the actual routing. The path indicates the url that the user needs to 
 
 We're almost ready to test- the last step is actually to change the redirect url of your server. Find this line in your code(it should be around line 107):
 
-```
+```js
 res.redirect('/#' +
           querystring.stringify({
             access_token: access_token,
@@ -180,7 +180,7 @@ Yay it works! (hopefully)
 
 Remember the Azure Function we made in step one? Time to finally integrate it into our app. You may remember the test html page we made, and we're pretty much going to add that into our app. I created a component called `FaceForm.js`  with our html form inside:
 
-```react
+```js
 //FaceForm.js
 
 import React, {useState} from 'react';
@@ -219,7 +219,7 @@ export default FaceForm
 
 This component is a child of `UploadFace.js`. Notice the event handler on the button has changed to call a function, `submitForm(event)`. The function gets the form data and calls our Azure Function using the function url. Let's take a look:
 
-```react
+```js
 //UploadFace.js
 
 async submitForm(event){   
@@ -258,7 +258,7 @@ Notice that in the last section, we set the state variable `submitted` to be tru
 
 Here, we're using an `if` statement to check if the state variable `submitted` is true or not. If true, we're going to be displaying the final page with all the emotion analysis and song recommendations. Else, we will display the form that allows the user to submit an image. The `else if` statement just renders a loading page while we make all the API calls.
 
-```react
+```js
 //UploadFace.js
 
   render(){
@@ -319,7 +319,7 @@ A basic overview: the Spotify web API has a feature that allows you to call an A
 
 Then, I'm setting my min and max valence. **Valence**: a numerical measure from 0 to 1 of a song's sadness/happiness. The lower the number, the sadder the track. You may see that I already have a variable called valence. This is how I calculated it:
 
-```react
+```js
 //SongPage.js
 
 let valence = props.emotions.happiness+props.emotions.surprise-props.emotions.anger-props.emotions.fear
@@ -338,7 +338,7 @@ Now that I have all my params, I'm making the actual API call and saving the res
 
 Here's the whole `getRecommendations()` function:
 
-```react
+```js
 //SongPage.js
 
 //GET RECOMMENDATIONS FUNCTION
@@ -434,7 +434,7 @@ The code is pretty simple. First, I created a new React Component called `Cam.js
 
 First, all of our import statments, including the one for `react-webcam`.
 
-```react
+```js
 //Cam.js
 
 import React from "react";
@@ -448,7 +448,7 @@ Then, we declare our class component, called `Cam`, and the constructor:
 
 Notice that this class will receive a `props` parameter.
 
-```react
+```js
 //Cam.js
 
 class Cam extends React.Component {
@@ -469,7 +469,7 @@ The entire render code is wrapped in the `image-submission`  div, and then split
 
 This is the `webcam-div` code, which renders the actual webcam with `<Webcam />`.  Notice that we have added a reference to the webcam with the variable `ref`.  We're going to need this later when we capture and screenshot. Also make sure you specify that `screenshotFormat='image/jpeg'`. **Without this, your image will be incorrectly encoded.**
 
-```react
+```js
 //Cam.js
 
 render() {
@@ -504,7 +504,7 @@ The `handleCapture` method is in the parent of the `Webcam`  component and looks
 
 Essentially, we're updating the state variable `img` with the base64 string, and also indicating through updating `showFormButton` that a submit button should be rendered.
 
-```react
+```js
 //UploadFace.js
 handleCapture = (imgSrc) => {
     this.setState({ 
@@ -518,13 +518,13 @@ handleCapture = (imgSrc) => {
 
 Now, onto the`screenshots` div, which makes up the second half of the `render`  method in `Cam.js`. This if statement: 
 
-```react
+```js
 {this.props.img ? <img src={this.props.img} /> : <img src={notfound} style={{width: '100%'}}/>}
 ```
 
 checks if there is an existing screenshot to display, and if not, displays a stock `image not found` photo.
 
-```react
+```js
 //Cam.js
 render(){
   ...
@@ -551,7 +551,7 @@ There's also a **Submit** button that calls the method`submit(event)`, which is 
 
 The `submit` method sends the base64 encoded image string to our Azure function. Then, it checks if the response array has been filled(indicating a face has been recognized and analyzed). If the submission is invalid, the user has to retake the picture.
 
-```react
+```js
 async submit(event){  
   
   	//show the loading page
@@ -599,7 +599,7 @@ Recall that we previously sent our image in multipart-form data. Now, it's a bas
 
 The only different part is that we no longer have to parse the form data. Instead, we are decoding the base64 image string using the `Buffer.from()`  method, and then passing the new byte array into our `analyzeImage` function, which is exactly the same as before.
 
-```javascript
+```js
 var request = require('request-promise');
 var util = require('util');
      
@@ -660,7 +660,7 @@ Great! The last step is to render our actual `Cam` component:
 
 Notice that I'm passing in all the necessary methods/state variables.
 
-```react
+```js
 //UploadFace.js 
 
 render(){
