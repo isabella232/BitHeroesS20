@@ -1,4 +1,4 @@
-#### **Welcome to Part 3. In this part, we will be just finishing up our logic app and uploading our files.**
+#### **Welcome to Part 3. In this part, we will be finishing up our logic app and uploading our files.**
 
 Link your “blob” blocks to your storage account when prompted. The block names in the Part 1 image are explanatory about what each block does. The for-each loop iterates through each “value” in the form submission. You will find “value” and many other variables in the “Dynamic Content” Section. 
 Below is a detailed explanation of the major blocks:
