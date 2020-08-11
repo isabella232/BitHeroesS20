@@ -1,4 +1,4 @@
-#### Have you ever wanted to get data from a form, process this data, and then use this data for your own use? Data analysis is a crucial step in many businesses, and fortunately we can use a simple Azure logic app and some HTML code to achieve complex refinement of masses of form data. 
+ #### Have you ever wanted to get data from a form, process this data, and then use it? Data analysis is a crucial step in many businesses, and fortunately, we can use a simple Azure logic app and some HTML code to achieve complex refinement of masses of form data. 
 
 Here’s a brief visual overview of the components of our project:
 
