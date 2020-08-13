@@ -431,7 +431,7 @@ In an unplanned detour from my original project, I discovered this great npm lib
 First, I created a new React Component called `Cam.js`  for our webcam. [Here](https://github.com/natalieh235/songrecproject/blob/webcam/client/src/components/FormFolder/Webcam.js) is the complete `Cam.js` code. I'll be breaking down in the code into individual pieces:
 
 
-First, all of our import statments, including the one for `react-webcam`.
+Import all of the required packages, including the one for `react-webcam`.
 
 ```js
 //Cam.js
