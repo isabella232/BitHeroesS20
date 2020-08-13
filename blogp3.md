@@ -500,7 +500,7 @@ We also have a `Capture`  button that is responsible for taking a screenshot whe
 
 The `handleCapture` method is in the parent of the `Webcam`  component and looks like this:
 
-Essentially, we're updating the state variable `img` with the base64 string, and also indicating through updating `showFormButton` that a submit button should be rendered.
+Essentially, we're updating the state variable `img` with the base64 string, and also indicating that a submit button should be rendered through updating `showFormButton`.
 
 ```js
 //UploadFace.js
@@ -694,4 +694,3 @@ or something like this..
 
 
 Have fun with it!
-
