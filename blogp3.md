@@ -445,7 +445,6 @@ import notfound from './imagenotfound.png'
 
 Then, we declare our class component, called `Cam`, and the constructor:
 
-Notice that this class will receive a `props` parameter.
 
 ```js
 //Cam.js
@@ -695,7 +694,6 @@ or something like this..
 
 
 Have fun with it!
-
 
 
 
