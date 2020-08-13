@@ -596,7 +596,7 @@ Recall that we previously sent our image in multipart-form data. Now, it's a bas
 
 
 
-The only different part is that we no longer have to parse the form data. Instead, we are decoding the base64 image string using the `Buffer.from()`  method, and then passing the new byte array into our `analyzeImage` function, which is exactly the same as before.
+The only different part is that we no longer have to parse the form data. Instead, we are decoding the base64 image string using the `Buffer.from()` method, and then passing the new byte array into the same `analyzeImage` function as before.
 
 ```js
 var request = require('request-promise');
@@ -695,7 +695,6 @@ or something like this..
 
 
 Have fun with it!
-
 
 
 
