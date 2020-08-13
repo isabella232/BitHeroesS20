@@ -422,7 +422,7 @@ In the rest of the code, I'm pretty much just displaying these 10 songs. Here's 
 
 ![finishedpage](/images/finishedpage.png)
 
-### Adding a Webcam!
+### Bonus: Adding a Webcam!
 
 In an unplanned detour from my original project, I discovered this great npm library called [react-webcam](https://www.npmjs.com/package/react-webcam) that allows you easily add a webcam component to React. Naturally, I decided to add this in (though it's completely optional). This webcam will replace the image upload page we previously made. The full code can be found in the [webcam](https://github.com/natalieh235/songrecproject/tree/webcam) branch of the original repo. There are only a few steps to accomplish this goal.
 
