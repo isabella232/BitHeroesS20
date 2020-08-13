@@ -545,7 +545,7 @@ render(){
 
 ```
 
-There's also a **Submit** button that calls the method`submit(event)`, which is also located in the parent component.
+There's also a **Submit** button that calls the method`submit(event)`, which is located in the parent component.
 
 The `submit` method sends the base64 encoded image string to our Azure function. Then, it checks if the response array has been filled (indicating a face has been recognized and analyzed). If the submission is invalid, the user has to retake the picture.
 
@@ -694,5 +694,4 @@ or something like this..
 
 
 Have fun with it!
-
 
