@@ -520,7 +520,7 @@ Now, onto the`screenshots` div, which makes up the second half of the `render`  
 {this.props.img ? <img src={this.props.img} /> : <img src={notfound} style={{width: '100%'}}/>}
 ```
 
-checks if there is an existing screenshot to display, and if not, displays a stock `image not found` photo.
+checks if there is an existing screenshot to display, and if not, it displays a stock `image not found` photo.
 
 ```js
 //Cam.js
@@ -694,7 +694,6 @@ or something like this..
 
 
 Have fun with it!
-
 
 
 
