@@ -1,1 +1,0 @@
-# bitheroes_summer20
